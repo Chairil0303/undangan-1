@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Undangan Digital - Opening</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Kalau file lokal lo gak ketemu, dia otomatis pake Luckiest Guy
+                        spongebob: ['Spongeboy Me Bob', 'Luckiest Guy', 'cursive'],
+                    }
+                }
+            }
+        }
+
+    </script>
+
+    <style>
+        @font-face {
+            @font-face {
+            font-family: 'Spongeboy Me Bob'; /* Nama bebas untuk dipanggil nanti */
+            src: url('/assets/Spongeboy Me Bob.ttf') format('truetype'); /* Sesuaikan path file */
+            font-weight: normal;
+            font-style: normal;
+        }
+        }
+    </style>
+
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+</head>
+
+<body class="bg-blue-800 min-h-screen flex items-center justify-center">
+    <div id="app" class="relative w-[390px] h-[100svh] bg-sky-400 overflow-hidden shadow-2xl">
+    
+        <!-- OPENING PAGE -->
+        <section id="opening" class="page absolute inset-0">
+            <img id="bg" src="./assets/bg.png" class="absolute inset-0 w-full h-full object-cover opacity-0" />
+    
+            <img src="./assets/jelly.png" class="jelly absolute bottom-[40%] z-10 left-2 w-20 opacity-0" />
+            <img src="./assets/jelly.png" class="jelly absolute top-[20%] z-10 right-2 w-24 opacity-0" />
+
+            <img src="./assets/awan.png" class="jelly absolute top-[-25px] z-10 right-5 w-40 opacity-0" />
+    
+            <img id="patrick" src="./assets/patrick.png" class="absolute bottom-6 left-4 w-48 opacity-0" />
+            <img id="sponge" src="./assets/sponge.png" class="absolute bottom-6 right-4 w-48 opacity-0" />
+    
+            <img id="slime" src="./assets/slime.png" class="absolute bottom-[45%] left-2 -translate-x-1/2 w-[350px] opacity-0" />
+    
+            <div id="titleMain"
+                class="font-spongebob absolute bottom-[76%] left-2 w-full text-left text-yellow-300 text-2xl leading-tight opacity-0 drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">
+                Bersiap <br />Untuk hari <br />Perayaan
+            </div>
+    
+            <div id="titleGuest"
+                class="font-spongebob absolute bottom-[60%] w-full text-center text-yellow-300 text-lg leading-tight opacity-0 drop-shadow-[2px_2px_0_rgba(0,0,0,1)]">
+                Kepada <br />
+                <span id="guestName">Nama Tamu</span>
+            </div>
+    
+            <button id="btnOpen"
+                class="absolute bottom-[54%] left-1/2 -translate-x-1/2 bg-yellow-400 px-6 py-2 rounded-full font-bold shadow-lg opacity-0">
+                Buka Undangan
+            </button>
+        </section>
+    
+        <!-- EVENT PAGE -->
+        <section id="event" class="page absolute inset-0 hidden">
+            <img src="./assets/bg.png" class="absolute inset-0 w-full h-full object-cover" />
+    
+            <!-- Panel info -->
+            <div class="animate absolute inset-6 bg-white/70 backdrop-blur rounded-2xl py-[100px] p-4 text-center">
+                <h1 class="font-spongebob text-pink-600 text-xl mb-2">Friday<br>24 January 2026</h1>
+                <p class="text-sm mb-3">10.00 – 12.00 WIB</p>
+    
+                <h2 class="font-spongebob text-pink-600 text-lg pt-6">Nickelodeon Playtime</h2>
+                <p class="text-sm">Jakarta</p>
+    
+                <p class="text-xs mt-2">
+                    Senayan Park Mall, Gelora,<br>
+                    Kec. Tanah Abang, Jakarta Pusat
+                </p>
+    
+                <h3 class="font-spongebob text-pink-600 mt-3">Dress Code</h3>
+                <p class="text-xs">Wear anything comfortable</p>
+            </div>
+    
+            <!-- Karakter -->
+            <img class="animate absolute bottom-24 left-4 w-32" src="./assets/patrick.png" />
+            <img class="animate absolute bottom-24 right-4 w-32" src="./assets/sponge.png" />
+    
+            
+        </section>
+
+        <!-- RUNDOWN PAGE -->
+        <section id="rundown" class="page absolute inset-0 hidden">
+            <img src="./assets/bg.png" class="absolute inset-0 w-full h-full object-cover" />
+        
+            <!-- Panel utama -->
+            <div class="animate absolute inset-6 bg-white/70 backdrop-blur rounded-2xl p-4 text-center">
+                <h1 class="font-spongebob text-pink-600 text-2xl mb-2">RUNDOWN</h1>
+        
+                <ul class="text-sm space-y-1 mt-2">
+                    <li>12.00 – 13.00 Lunch</li>
+                    <li>13.00 – 13.30 Tiup Lilin</li>
+                    <li>13.30 – 15.00 Play @ Nickelodeon</li>
+                    <li>15.00 – 18.00 Play @ Playtopia</li>
+                </ul>
+        
+                <!-- Countdown -->
+                <div class="flex justify-center gap-2 mt-4">
+                    <div class="bg-yellow-400 rounded-xl px-3 py-2">
+                        <p class="font-bold text-lg" id="cdDays">236</p>
+                        <p class="text-xs">Hari</p>
+                    </div>
+                    <div class="bg-yellow-400 rounded-xl px-3 py-2">
+                        <p class="font-bold text-lg" id="cdHours">8</p>
+                        <p class="text-xs">Jam</p>
+                    </div>
+                    <div class="bg-yellow-400 rounded-xl px-3 py-2">
+                        <p class="font-bold text-lg" id="cdMinutes">45</p>
+                        <p class="text-xs">Menit</p>
+                    </div>
+                    <div class="bg-yellow-400 rounded-xl px-3 py-2">
+                        <p class="font-bold text-lg" id="cdSeconds">2</p>
+                        <p class="text-xs">Detik</p>
+                    </div>
+                </div>
+        
+                <p class="text-xs mt-3">
+                    Send your wishes and warm messages<br>
+                    to celebrate this special day
+                </p>
+        
+                <button class="mt-3 bg-yellow-400 px-6 py-2 rounded-full font-bold">
+                    RSVP
+                </button>
+            </div>
+        
+            <!-- Karakter -->
+            <img class="animate absolute bottom-20 left-4 w-32" src="./assets/patrick.png" />
+            <img class="animate absolute bottom-20 right-4 w-32" src="./assets/sponge.png" />
+        </section>
+
+    
+        <!-- BOTTOM NAV -->
+        <nav id="bottomNav"
+            class="absolute bottom-0 left-0 w-full h-20 bg-pink-300 flex justify-around items-center z-50 opacity-0 pointer-events-none transition-opacity">
+            <button onclick="goTo('event')" id="nav-event" class=" font-spongebob text-black-600text-sm font-bold">Event</button>
+            <button onclick="playEventExit('rundown')" id="nav-rundown"
+                class="font-spongebob text-black-600 text-sm font-bold opacity-50">
+                Rundown
+            </button>
+            <button onclick="goTo('thanks')" class="font-spongebob text-black-600 text-sm font-bold opacity-50">Thanks</button>
+        </nav>
+
+        <!-- Floating buttons -->
+        <div id="floatingButtons"
+            class="absolute right-3 bottom-32 flex flex-col gap-2 z-40 opacity-0 pointer-events-none transition-all">
+            <button class="w-10 h-10 rounded-full bg-green-500 text-white">WA</button>
+            <button id="btnMusic" class="w-10 h-10 rounded-full bg-yellow-400">🔊</button>
+            <button class="w-10 h-10 rounded-full bg-orange-400">▶</button>
+        </div>
+    
+    </div>
+
+    <audio id="bgm" loop playsinline>
+        <source src="./assets/spongebob.mp3" type="audio/mpeg" />
+    </audio>
+
+
+    <script>
+    // 1. Definisikan Audio di paling atas
+    const audio = document.getElementById('bgm');
+            const btnMusic = document.getElementById('btnMusic');
+
+            // 2. Ambil Nama Tamu
+            const urlParams = new URLSearchParams(window.location.search);
+            const nama = urlParams.get('nama');
+            if (nama) document.getElementById('guestName').innerText = nama;
+
+            // 3. Opening Animation
+            const openingTl = gsap.timeline();
+            openingTl
+                .to("#bg", { opacity: 1, duration: 1 })
+                .fromTo("#patrick", { x: -200, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 })
+                .fromTo("#sponge", { x: 200, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8 }, "<")
+                .fromTo(".jelly", { y: -100, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.2 })
+                .fromTo("#slime", { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6 }, "-=0.3")
+                .fromTo("#titleMain", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
+                .fromTo("#titleGuest", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 })
+                .fromTo("#btnOpen", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
+
+                function playOpeningExit() {
+                        const exitTl = gsap.timeline({
+                            onComplete: () => {
+                                goTo('event');
+                                showNav();
+
+                                audio.volume = 0.6;
+                                audio.play().catch(() => { });
+                            }
+                        });
+
+                        exitTl
+                            .to("#patrick", { x: -200, opacity: 0, duration: 0.4 })
+                            .to("#sponge", { x: 200, opacity: 0, duration: 0.4 }, "<")
+                            .to(".jelly", { y: -80, opacity: 0, duration: 0.3, stagger: 0.1 })
+                            .to("#slime", { scale: 0.6, opacity: 0, duration: 0.3 })
+                            .to("#titleMain", { y: 40, opacity: 0, duration: 0.25 })
+                            .to("#titleGuest", { y: 40, opacity: 0, duration: 0.25 }, "<")
+                            .to("#btnOpen", { scale: 0.8, opacity: 0, duration: 0.2 });
+                    }
+
+
+            // 4. Fungsi Navigasi
+            function showNav() {
+                const nav = document.getElementById('bottomNav');
+                nav.classList.remove('opacity-0', 'pointer-events-none');
+                nav.classList.add('opacity-100');
+            }
+
+            function goTo(pageId) {
+                const pages = document.querySelectorAll('.page');
+                pages.forEach(p => p.classList.add('hidden'));
+
+                const target = document.getElementById(pageId);
+                target.classList.remove('hidden');
+
+                // Animasi elemen dengan class .animate
+                gsap.set(`#${pageId} .animate`, { y: 40, opacity: 0 });
+                gsap.to(`#${pageId} .animate`, {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.12,
+                    ease: "power2.out"
+                });
+
+                  // Floating Button Logic
+                const float = document.getElementById('floatingButtons');
+                if (pageId === 'event' || pageId === 'rundown') {
+                    float.classList.remove('opacity-0', 'pointer-events-none');
+                    float.classList.add('opacity-100');
+                } else {
+                    float.classList.add('opacity-0', 'pointer-events-none');
+                    float.classList.remove('opacity-100');
+                }
+
+                // Update Nav State
+                document.getElementById('nav-opening')?.classList.toggle('opacity-50', pageId !== 'opening');
+                document.getElementById('nav-event')?.classList.toggle('opacity-50', pageId !== 'event');
+                document.getElementById('nav-rundown')?.classList.toggle('opacity-50', pageId !== 'rundown');
+            }
+
+            // Transisi OUT Event → Rundown
+            function playEventExit(nextPage) {
+                    const exitTl = gsap.timeline({
+                        onComplete: () => goTo(nextPage)
+                    });
+
+                    exitTl.to("#event .animate", {
+                        y: -40,
+                        opacity: 0,
+                        duration: 0.3,
+                        stagger: 0.05
+                    });
+                }
+
+
+            // 5. Event Listener Tombol Buka
+            // document.getElementById('btnOpen').onclick = () => {
+            //     goTo('event');
+            //     showNav();
+
+            //     // PLAY AUDIO - Ini kunci utamanya
+            //     if (audio) {
+            //         audio.volume = 0.6;
+            //         audio.play().catch(e => console.error("Gagal play audio:", e));
+            //     }
+            // };
+
+            document.getElementById('btnOpen').onclick = () => {
+                    playOpeningExit();
+            };
+
+
+
+
+            // 6. Kontrol Musik (Mute/Unmute)
+            btnMusic?.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    btnMusic.innerText = '🔊';
+                } else {
+                    audio.pause();
+                    btnMusic.innerText = '🔇';
+                }
+            });
+    </script>
+</body>
+
+</html>
