@@ -1,6 +1,19 @@
 // /js/animations.js
 import { goTo, showNav } from './nav.js';
 
+export function playEventExit(nextPage) {
+  const exitTl = gsap.timeline({
+    onComplete: () => goTo(nextPage)
+  });
+
+  exitTl.to("#event .animate", {
+    y: -40,
+    opacity: 0,
+    duration: 0.3,
+    stagger: 0.05
+  });
+}
+
 export function initOpeningAnimation(audio) {
   const openingTl = gsap.timeline();
 
